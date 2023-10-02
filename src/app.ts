@@ -56,6 +56,28 @@ app.get("/movie/:id", async (req, res) => {
   }
 });
 
+app.get("/movies/search/:text", async (req, res) => {
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const text = req.params.text;
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${text}`,
+        {
+          headers,
+        }
+      );
+  
+      const data = response.data;
+      console.log(data);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Erro ao acessar a API externa" });
+    }
+  });
+
 app.use(express.json());
 
 export default app;
