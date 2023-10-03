@@ -6,7 +6,7 @@ import {
 
 const moviesRoutes: Router = Router();
 
-moviesRoutes.get("/:page", listMovieController);
 moviesRoutes.get("/search/:text", listMovieSearchController);
+moviesRoutes.get("/:page", listMovieController);
 
 export default moviesRoutes;
